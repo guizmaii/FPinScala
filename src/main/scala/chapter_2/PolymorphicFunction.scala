@@ -27,7 +27,9 @@ object PolymorphicFunction {
     println( isSorted(sorted)(_ < _) )
     println( isSorted(sorted)(_ > _) )
 
-    val curried: Int => Int => Boolean = curry[Int, Int, Boolean](_ < _)
+    val curriedStrictInf: Int => Int => Boolean = curry[Int, Int, Boolean](_ < _)
+    println( isSorted(sorted)(uncurry(curriedStrictInf)))
+
   }
 
 }
