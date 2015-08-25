@@ -69,7 +69,7 @@ object List { // `List` companion object. Contains functions for creating and wo
   @tailrec
   def drop[A](l: List[A], n: Int): List[A] = (l, n) match {
     case (Nil, _) => List()
-    case (list, 0) => list
+    case (l, 0) => l
     case (Cons(_, t), _) => drop(t, n-1)
   }
 
