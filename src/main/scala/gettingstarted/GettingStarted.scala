@@ -10,17 +10,15 @@ object MyModule {
     if (n < 0) -n
     else n
 
-  private def formatAbs(x: Int) = {
-    val msg = "The absolute value of %d is %d"
-    msg.format(x, abs(x))
-  }
+  private def formatAbs(x: Int) =
+    "The absolute value of %d is %d".format(x, abs(x))
 
   def main(args: Array[String]): Unit =
     println(formatAbs(-42))
 
   // A definition of factorial, using a local, tail recursive function
   def factorial(n: Int): Int = {
-    @annotation.tailrec
+    @tailrec
     def go(n: Int, acc: Int): Int =
       if (n <= 0) acc
       else go(n-1, n*acc)
@@ -41,17 +39,14 @@ object MyModule {
   def fib(n: Int): Int = ???
 
   // This definition and `formatAbs` are very similar..
-  private def formatFactorial(n: Int) = {
-    val msg = "The factorial of %d is %d."
-    msg.format(n, factorial(n))
-  }
+  private def formatFactorial(n: Int) =
+    "The factorial of %d is %d.".format(n, factorial(n))
+
 
   // We can generalize `formatAbs` and `formatFactorial` to
   // accept a _function_ as a parameter
-  def formatResult(name: String, n: Int, f: Int => Int) = {
-    val msg = "The %s of %d is %d."
-    msg.format(name, n, f(n))
-  }
+  def formatResult(name: String, n: Int, f: Int => Int) =
+    "The %s of %d is %d.".format(name, n, f(n))
 }
 
 object FormatAbsAndFactorial {
@@ -103,7 +98,7 @@ object MonomorphicBinarySearch {
   // Ideally, we could generalize this to work for any `Array` type,
   // so long as we have some way of comparing elements of the `Array`
   def binarySearch(ds: Array[Double], key: Double): Int = {
-    @annotation.tailrec
+    @tailrec
     def go(low: Int, mid: Int, high: Int): Int = {
       if (low > high) -mid - 1
       else {
@@ -125,7 +120,7 @@ object PolymorphicFunctions {
   // Here's a polymorphic version of `binarySearch`, parameterized on
   // a function for testing whether an `A` is greater than another `A`.
   def binarySearch[A](as: Array[A], key: A, gt: (A,A) => Boolean): Int = {
-    @annotation.tailrec
+    @tailrec
     def go(low: Int, mid: Int, high: Int): Int = {
       if (low > high) -mid - 1
       else {
